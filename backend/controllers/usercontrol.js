@@ -17,8 +17,17 @@ export const createUser=async(req,res)=>{
     const hpwd=await bcrypt.hash(password,salt);
     const us=await user.create({
         name,
-        password,
+        password:hpwd,
         email
     });
     return res.status(201).json(us);
+}
+
+export const loginControl=async(req,res)=>{
+    const {name,password}=req.body;
+    const u=await user.findOne({name});
+    console.log(u);
+    console.log(password);
+    if(u && await bcrypt.compare(password,u.password)) return res.status(201).send("Sucess");
+    return res.status(400).send("Not done");
 }

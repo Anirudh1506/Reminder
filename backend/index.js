@@ -1,8 +1,10 @@
 import express from 'express';
+import cors from 'cors';
 
 import route1 from './routes/UserRoutes.js'
 import router2 from './routes/reminderRoutes.js';
 import { connectDB } from './config/connectDB.js';
+
 
 const app=express()
 
@@ -10,6 +12,7 @@ const PORT=process.env.PORT;
 
 connectDB();
 
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({'extended':false}))
 
