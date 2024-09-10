@@ -6,12 +6,13 @@ export const getRem=async(req,res)=>{
 }
 
 export const addRem=async(req,res)=>{
-    const {data,cat}=req.body;
-    const dat=new Date();
+    const {data,cat,date}=req.body;
+    const d=new Date().setHours(0,0,0,0);
     const r=await remind.create({
         data,
-        date:dat,
-        cat
+        date:date,
+        cat,
+        curr:d
     });
     return res.status(201).json(r);
 }

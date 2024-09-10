@@ -12,6 +12,10 @@ const rem= mongoose.Schema({
     cat:{
         type:String,
         required:true
+    },
+    curr:{
+        type:Date,
+        required:true
     }
 });
 

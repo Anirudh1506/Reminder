@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import user from '../models/User.js';
 
 export const getUsers=async(req,res)=>{
-    const users=await user.find();
+    const users=await user.find().select('-password');
     return res.json(users);
 }
 
