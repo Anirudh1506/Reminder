@@ -34,6 +34,8 @@ const Login = () => {
                 name:'',
                 password:''
             });
+            const data=await res.json();
+            localStorage.setItem('token',data.token);  
             nav("/home");
         }
         else{

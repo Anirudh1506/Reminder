@@ -28,6 +28,16 @@ export const loginControl=async(req,res)=>{
     const u=await user.findOne({name});
     console.log(u);
     console.log(password);
-    if(u && await bcrypt.compare(password,u.password)) return res.status(201).send("Sucess");
+    if(u && await bcrypt.compare(password,u.password)) return res.status(201).json({
+        name:'name',
+        token:genToken(name)
+    })
     return res.status(400).send("Not done");
+}
+
+const genToken=(name)=>{
+    const token= jsonwebtoken.sign({name},process.env.SECRET_KEY,{
+        expiresIn:'1d'
+    });
+    return token;
 }
