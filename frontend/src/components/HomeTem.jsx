@@ -3,7 +3,6 @@ import { NavLink, Outlet } from 'react-router-dom';
 const HomeTem = () => {
   return (
     <div className="flex h-screen">
-      {/* Side Navbar */}
       <nav className="bg-blue-800 text-white w-64 h-full px-4 py-6">
         <h1 className="text-2xl font-bold mb-8">Reminders</h1>
         <ul className="space-y-4">

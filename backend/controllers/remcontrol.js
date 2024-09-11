@@ -44,7 +44,7 @@ export const addRem=async(req,res)=>{
         cat,
         curr:d
     });
-    const send=sendMail("2100031630cseh@gmail.com",data);
-    console.log(send);
+   /*const send=sendMail("2100031630cseh@gmail.com",data);*/
+    //console.log(send);
     return res.status(201).json(r);
 }
