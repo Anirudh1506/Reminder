@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import user from '../models/User.js';
 
 const verifyAuth=(req,res,next)=>{
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
