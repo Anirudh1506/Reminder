@@ -52,3 +52,44 @@ export const addRem=async(req,res)=>{
     //console.log(send);
     return res.status(201).json(r);
 }
+
+const hoursSince = (startDate) => {
+    const now = new Date();
+    const timeDiff = Math.abs(now - startDate);
+    return Math.floor(timeDiff / (1000 * 60 * 60));
+};
+
+const sendRemindersByCategory = async () => {
+    try {
+        const reminders = await remind.find();
+
+        for (const reminder of reminders) {
+            const creationTime = new Date(reminder.curr);
+            let intervalHours;
+
+            if (reminder.cat === 'Daily') {
+                intervalHours = 24;
+            } else if (reminder.cat === 'Weekly') {
+                intervalHours = 24 * 7;
+            } else if (reminder.cat === 'Monthly') {
+                intervalHours = 24 * 30;
+            }
+
+            const hoursPassed = hoursSince(creationTime);
+
+            if (hoursPassed % intervalHours === 0) {
+                const users = await user.find();
+
+                for (const u of users) {
+                    await sendMail(u.email, reminder.data);
+                }
+            }
+        }
+    } catch (error) {
+        console.error("Error sending reminders:", error);
+    }
+};
+
+cron.schedule('* * * * *', async () => {
+    await sendRemindersByCategory();
+});

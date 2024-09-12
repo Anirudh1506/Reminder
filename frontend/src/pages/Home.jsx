@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const nav=useNavigate();
 
   useEffect(() => {
+    if(!localStorage.getItem('token')) return nav('/log');
     axios
       .get("http://localhost:8080/rem", {
         headers: {
@@ -18,16 +21,16 @@ const Home = () => {
         setData(sortedData);
       })
       .catch((error) => console.error("Error fetching reminders:", error));
-  }, []);
+  }, [nav]);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6 space-y-4">
+    <div className="min-h-screen  flex flex-col items-center p-6 space-y-4">
       <h1 className="text-5xl">Upcoming Events</h1>
       {data.length > 0 ? (
         data.map((d) => (
           <div
             key={d._id}
-            className="bg-white w-11/12 md:w-8/12 lg:w-7/12 shadow-lg rounded-lg p-6 mb-6 border-l-4 border-blue-600 hover:border-blue-800 hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
+            className="bg-gray-100 w-11/12 md:w-8/12 lg:w-7/12 shadow-lg rounded-lg p-6 mb-6 border-l-4 border-blue-600 hover:border-blue-800 hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
           >
             <h1 className="text-2xl font-bold text-blue-800 mb-2 hover:text-blue-600 transition-colors duration-300">
               {d.data}
@@ -42,7 +45,7 @@ const Home = () => {
         ))
       ) : (
         <p className="text-lg font-semibold text-gray-500">
-          No reminders available.
+          No reminders available. Please Login
         </p>
       )}
     </div>

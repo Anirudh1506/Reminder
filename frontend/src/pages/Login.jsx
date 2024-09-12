@@ -43,7 +43,8 @@ const Login = () => {
         }
     }
   return (
-    <div className="flex flex-col justify-center items-center min-h-full h-screen ">
+    <div className="flex flex-col justify-center items-center min-h-full h-screen space-y-4">
+      <h1 className='text-3xl font-bold'>REMINDERS APP</h1>
     <form
         onSubmit={handleSubmit} 
        className="flex flex-col bg-blue-400 p-6 rounded-3xl shadow-md w-96 h-1/2 space-y-4">

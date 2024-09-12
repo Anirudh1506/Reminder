@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Signup = () => {
+    const nav=useNavigate()
     const [formDat,setFormData]=useState({
         name:'',
         email:'',
@@ -35,6 +36,7 @@ const Signup = () => {
                 password:'',
                 email:''
             })
+            nav('/log')
         }
     }
   return (

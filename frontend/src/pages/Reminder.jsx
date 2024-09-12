@@ -62,7 +62,7 @@ const Reminder = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex flex-col justify-center items-center min-h-screen ">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col bg-blue-500 p-8 rounded-3xl shadow-lg w-full max-w-sm space-y-6"

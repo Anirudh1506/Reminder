@@ -1,6 +1,17 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet,useNavigate } from 'react-router-dom';
 
 const HomeTem = ({logOut}) => {
+  const nav=useNavigate();
+  
+  const isAuth=localStorage.getItem('token')
+
+  const btn=isAuth?'LogOut':'Login';
+
+  function handleChange(){
+    if(isAuth) return logOut();
+    return nav("/log");
+  }
+
   return (
     <div className="flex min-h-screen">
       <nav className="bg-blue-800 text-white w-64 sticky top-0 h-screen px-4 py-6">
@@ -45,10 +56,10 @@ const HomeTem = ({logOut}) => {
 
           <li>
           <button
-              onClick={logOut}
+              onClick={handleChange}
               className="block py-2 px-4 rounded-md bg-blue-600 font-semibold hover:bg-blue-700 transition-colors"
             >
-              LogOut
+              {btn}
             </button>
           </li>
 
@@ -56,8 +67,8 @@ const HomeTem = ({logOut}) => {
       </nav>
 
       {/* Content */}
-      <div className="flex-1 bg-white">
-        <div className="p-6 bg-gray-100 min-h-screen">
+      <div className="flex-1 ">
+        <div className="p-6  min-h-screen">
           <Outlet />
         </div>
       </div>

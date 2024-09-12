@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes,useNavigate } from 'react-router-dom'
-
+import bg from './assets/subtle-prism.svg'
 
 import HomeTem from './components/HomeTem'
 
@@ -15,12 +15,13 @@ const App = () => {
   const nav=useNavigate()
   function logOut(){
     localStorage.clear();
-    nav('form/log')
+    nav('/log')
     return;
   }
   return (
-    <Routes>
-      
+    <div className='min-h-screen bg-cover bg-center' style={{backgroundImage:`url(${bg})`}}>
+      <Routes>
+
 
       <Route path='/' element={<HomeTem logOut={logOut}/>}>
         <Route path='home' element={<Home/>}/>
@@ -31,6 +32,7 @@ const App = () => {
       <Route path='log' element={<Login/>}/>
       <Route path='register' element={<SignUp/>}/>
     </Routes>
+    </div>
   )
 }
 
