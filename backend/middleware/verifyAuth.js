@@ -9,7 +9,6 @@ const verifyAuth=(req,res,next)=>{
         }
         jwt.verify(token,process.env.SECRET_KEY,(err,decoded)=>{
             if(err) return res.status(400).send('Token not valid');
-            console.log(decoded);
             req.user=decoded.name;
             next();
         });

@@ -2,9 +2,10 @@ import remind from '../models/Reminder.js';
 import nodemailer from 'nodemailer';
 import cron from 'node-cron';
 
+import user from '../models/User.js'
+
 export const getRem=async(req,res)=>{
     const re=await remind.find();
-    console.log(req.user);
     return res.status(201).json(re);
 }
 
@@ -44,7 +45,10 @@ export const addRem=async(req,res)=>{
         cat,
         curr:d
     });
-   /*const send=sendMail("2100031630cseh@gmail.com",data);*/
+    const name=req.user;
+    const u=await user.findOne({name})
+    console.log(u.email)
+    const send=sendMail(u.email,data);
     //console.log(send);
     return res.status(201).json(r);
 }

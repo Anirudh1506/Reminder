@@ -1,14 +1,14 @@
 import { NavLink, Outlet } from 'react-router-dom';
 
-const HomeTem = () => {
+const HomeTem = ({logOut}) => {
   return (
-    <div className="flex h-screen">
-      <nav className="bg-blue-800 text-white w-64 h-full px-4 py-6">
+    <div className="flex min-h-screen">
+      <nav className="bg-blue-800 text-white w-64 sticky top-0 h-screen px-4 py-6">
         <h1 className="text-2xl font-bold mb-8">Reminders</h1>
         <ul className="space-y-4">
           <li>
             <NavLink
-              to="/"
+              to="/home"
               className={({ isActive }) =>
                 isActive
                   ? "block py-2 px-4 rounded-md bg-blue-600 font-semibold"
@@ -42,6 +42,16 @@ const HomeTem = () => {
               Add Reminder
             </NavLink>
           </li>
+
+          <li>
+          <button
+              onClick={logOut}
+              className="block py-2 px-4 rounded-md bg-blue-600 font-semibold hover:bg-blue-700 transition-colors"
+            >
+              LogOut
+            </button>
+          </li>
+
         </ul>
       </nav>
 

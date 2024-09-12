@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Reminder = () => {
+  const nav=useNavigate()
   const [formData, setFormData] = useState({
     info: "",
     date: "",
@@ -36,11 +38,15 @@ const Reminder = () => {
             date:'',
             cat:'Daily'
         })  
-        return;
+        
     }
 
     try {
-      await axios.post("http://localhost:8080/rem", reminderData);
+      await axios.post("http://localhost:8080/rem", reminderData,{
+        headers:{
+          Authorization:`Bearer ${localStorage.getItem('token')}`
+        }
+      });
       setFormData({
         info: "",
         date: "",
@@ -48,6 +54,7 @@ const Reminder = () => {
       });
 
       alert("Reminder created successfully!");
+      nav("/home");
     } catch (error) {
       console.error("Error creating reminder:", error);
       alert("Failed to create reminder.");

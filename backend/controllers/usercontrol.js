@@ -26,8 +26,6 @@ export const createUser=async(req,res)=>{
 export const loginControl=async(req,res)=>{
     const {name,password}=req.body;
     const u=await user.findOne({name});
-    console.log(u);
-    console.log(password);
     if(u && await bcrypt.compare(password,u.password)) return res.status(201).json({
         name:'name',
         token:genToken(name)
