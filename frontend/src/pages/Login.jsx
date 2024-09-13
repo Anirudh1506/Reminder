@@ -36,7 +36,7 @@ const Login = () => {
             });
             const data=await res.json();
             localStorage.setItem('token',data.token);  
-            nav("/home");
+            nav("/");
         }
         else{
             alert("Not sucess");

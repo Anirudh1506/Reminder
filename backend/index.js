@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({'extended':false}))
 
 app.use('/user',route1);
-app.use(verifyAuth)
+//app.use(verifyAuth)
 app.use('/rem',router2);
 
 app.listen(PORT,()=>{

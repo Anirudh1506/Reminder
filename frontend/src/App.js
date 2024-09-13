@@ -24,7 +24,7 @@ const App = () => {
 
 
       <Route path='/' element={<HomeTem logOut={logOut}/>}>
-        <Route path='home' element={<Home/>}/>
+        <Route path='' element={<Home/>}/>
         <Route path='remind' element={<Reminder/>}/>
         <Route path='calendar' element={<Calender/>}/>
       </Route>
