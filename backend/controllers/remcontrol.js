@@ -62,8 +62,12 @@ const hoursSince = (startDate) => {
 const sendRemindersByCategory = async () => {
     try {
         const reminders = await remind.find();
-
+        const date=new Date().setHours(0,0,0,0);
         for (const reminder of reminders) {
+            if(reminder.date >= date){
+                await reminder.deleteOne();
+                continue;
+            }
             const creationTime = new Date(reminder.curr);
             let intervalHours;
 
@@ -90,6 +94,6 @@ const sendRemindersByCategory = async () => {
     }
 };
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 * * * *', async () => {
     await sendRemindersByCategory();
 });
