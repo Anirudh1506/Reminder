@@ -18,4 +18,4 @@ const verifyAuth=(req,res,next)=>{
     }
 }
 
-export default verifyAuth;
+export default verifyAuth;  
