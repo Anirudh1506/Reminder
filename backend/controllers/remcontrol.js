@@ -11,9 +11,9 @@ export const getRem=async(req,res)=>{
 
 const transporter=nodemailer.createTransport({
     service:"Gmail",
-    host: 'smtp.gmail.com',
-    port: 587, // Use port 587 for TLS
-    secure: false, // Use false for TLS
+    host: process.env.MAIL_SMTP,
+    port: process.env.MAIL_PORT,
+    secure: false,
     auth:{
         user:process.env.MAIL,
         pass: process.env.PASSWORD
